@@ -97,6 +97,26 @@ CategoricalModel<- felm(pm25 ~ AWND + TAVG + PRCP + Charlotte + Open + Charlotte
 summary(CategoricalModel)
 ```
 
+Feedback: The categorical model written like this instead (1 point deduction):
+
+```{r}
+CategoricalModel<- felm(pm25 ~ AWND + TAVG + PRCP + 
+                          Charlotte + Open + Charlotte:Open | 
+                          city_num, data = Controls_data2)
+
+summary(CategoricalModel)
+```
+
+I would also suggest a more complicated mode:
+
+```{r}
+CategoricalModel<- felm(pm25 ~ AWND + TAVG + PRCP + 
+                          Charlotte + Open + Charlotte:Open | 
+                          city_num + month + year, data = Controls_data2)
+
+summary(CategoricalModel)
+```
+
 **Question 7: Based on the regression in Question 6, what is the** **treatment effect? Is the treatment effect statistically different from 0? (2 points)**
 
 Answer: Here, the treatment effect is -0.322116, which once again, is still not statistically different from 0.
